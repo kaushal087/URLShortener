@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'bookmark/style.css' %}" /> -->
+ 
+<body class="container">
+<h1>Documentation</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">URL Shortener</h3>
+  </div>
+  <div class="panel-body">
+    API URL = <a href="{{current_site}}shortenURL/">{{current_site}}shortenURL/</a> <br/>
+    Method  = POST <br/>
+    Return Type = JSON <br/>
+    <hr>
+    Check working demo at <a href="{{current_site}}surl">{{current_site}}surl</a>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Search</h3>
+  </div>
+  <div class="panel-body">
+    API URL = <a href="{{current_site}}search/?searchString=<YOUR_SEARCH_STRING>">{{current_site}}search/?searchString=<YOUR_SEARCH_STRING></a><br/>
+    Method = GET<br/>
+    Return Type = JSON<br/>
+    <hr/>
+    Check working demo at <a href="{{current_site}}search/?searchString=<YOUR_SEARCH_STRING>">{{current_site}}search/?searchString=<YOUR_SEARCH_STRING></a>
+  </div>
+</div>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Get no of Hits</h3>
+  </div>
+  <div class="panel-body">
+    API URL = <a href = "{{current_site}}hits/?url=<YOUR_SITE_SHORT_URL>">{{current_site}}hits/?url=<YOUR_SITE_SHORT_URL></a><br/>
+    Method = GET<br/>
+    Return Type = JSON<br/>
+    <hr/>
+    Check working demo at <a href = "{{current_site}}hits/?url=<YOUR_SITE_SHORT_URL>">{{current_site}}hits/?url=<YOUR_SITE_SHORT_URL></a>
+  </div>
+</div>
+
+
+
+</body>
