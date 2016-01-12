@@ -16,6 +16,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.http import Http404
 from django.conf import settings
 
+import re
+
 import socket
 
 
@@ -54,6 +56,9 @@ def searchURL(request):
 
 	lst = []
 
+
+
+
 	for urlrow in urlObj:
 		current_title = urlrow.title
 		print current_title
@@ -67,6 +72,9 @@ def searchURL(request):
 
 
 def redirectToLongURL(request, shorturl):
+
+	current_site = settings.SITE_URL
+
 
 	urlid = getURLId(shorturl)
 	print "urlid", urlid
@@ -139,37 +147,43 @@ def getURLId(shorturl):
 
 
 def shortenURL(request):
-	url =  str(request.POST['longURL'])
-	url = url.strip()
-	url = str(url)
-	context = {}
+	if (request.POST):
+		url =  str(request.POST['longURL'])
+		url = url.strip()
+		url = str(url)
+		context = {}
 
-	urlPage = BeautifulSoup(urllib2.urlopen(url))
-	if(urlPage.title == None):
-		title = 'No title'
+		try:
+			urlPage = BeautifulSoup(urllib2.urlopen(url))
+			if(urlPage.title == None):
+				title = 'No title'
+			else:
+				title = urlPage.title.string
+
+			title = str(title)
+			print url
+			print title
+
+			objNewURL, isCreated = turl.objects.get_or_create(url = url, title=title)
+			objNewURL.save()
+			urlid = objNewURL.urlid
+			shorturl = getShortURL(urlid)
+			print shorturl
+			objNewURL.surl = shorturl
+			objNewURL.save()
+
+			print shorturl
+
+			#current_site = socket.gethostbyname(socket.gethostname())
+			current_site = settings.SITE_URL
+
+			shorturl =  current_site + "/url/" +  shorturl
+
+
+			data = {"shorturl":shorturl}
+
+			return JsonResponse(data, safe=False)
+		except:
+			return HttpResponse("<script>alert('Not a valid URL')</script>")
 	else:
-		title = urlPage.title.string
-
-	title = str(title)
-	print url
-	print title
-
-	objNewURL, isCreated = turl.objects.get_or_create(url = url, title=title)
-	objNewURL.save()
-	urlid = objNewURL.urlid
-	shorturl = getShortURL(urlid)
-	print shorturl
-	objNewURL.surl = shorturl
-	objNewURL.save()
-
-	print shorturl
-
-	#current_site = socket.gethostbyname(socket.gethostname())
-	current_site = settings.SITE_URL
-
-	shorturl =  current_site + "/url/" +  shorturl
-
-
-	data = {"shorturl":shorturl}
-
-	return JsonResponse(data, safe=False)
+		raise Http404("Page not found")

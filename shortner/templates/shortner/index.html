@@ -1,8 +1,9 @@
 {% load staticfiles %}
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'bookmark/style.css' %}" /> -->
+
+<script src="{% static 'shortner/bootstrap.min.js' %}"></script>
+<script src="{% static 'shortner/jquery.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'shortner/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'shortner/bootstrap.min.css' %}" />
  
 <body class="container">
 <h1>Documentation</h1>
@@ -26,11 +27,11 @@
     <h3 class="panel-title">Search</h3>
   </div>
   <div class="panel-body">
-    API URL = <a href="{{current_site}}search/?searchString=<YOUR_SEARCH_STRING>">{{current_site}}search/?searchString=<YOUR_SEARCH_STRING></a><br/>
+    API URL = <a href="{{current_site}}search/?searchString=">{{current_site}}search/?searchString=</a><br/>
     Method = GET<br/>
     Return Type = JSON<br/>
     <hr/>
-    Check working demo at <a href="{{current_site}}search/?searchString=<YOUR_SEARCH_STRING>">{{current_site}}search/?searchString=<YOUR_SEARCH_STRING></a>
+    Check working demo at <a href="{{current_site}}search/?searchString=">{{current_site}}search/?searchString=</a>
   </div>
 </div>
 
@@ -41,11 +42,11 @@
     <h3 class="panel-title">Get no of Hits</h3>
   </div>
   <div class="panel-body">
-    API URL = <a href = "{{current_site}}hits/?url=<YOUR_SITE_SHORT_URL>">{{current_site}}hits/?url=<YOUR_SITE_SHORT_URL></a><br/>
+    API URL = <a href = "{{current_site}}hits/?url=<YOUR_SITE_SHORT_URL>">{{current_site}}hits/?url= < URLSTRING ></a><br/>
     Method = GET<br/>
     Return Type = JSON<br/>
     <hr/>
-    Check working demo at <a href = "{{current_site}}hits/?url=<YOUR_SITE_SHORT_URL>">{{current_site}}hits/?url=<YOUR_SITE_SHORT_URL></a>
+    Check working demo at <a href = "{{current_site}}hits/?url=p">{{current_site}}hits/?url=p</a>
   </div>
 </div>
 
